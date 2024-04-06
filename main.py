@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-
+from fastapi.middleware.cors import CORSMiddleware
 
 from Connection.mongodb_connector import db_manager
 from schemas.config import settings
@@ -7,6 +7,16 @@ from schemas.project_schema import ProjectSchema, ProjectSchemaOptional
 from schemas.exceptions import ObjectIdException
 
 app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/projects")
