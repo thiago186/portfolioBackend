@@ -42,6 +42,9 @@ class MongoDBManager:
         return result
     
     def delete_item(self, query_dict):
+        if '_id' in query_dict:
+            query_dict["_id"] = convert_to_object_id(query_dict["_id"])
+            
         return self.collection.delete_one(query_dict)
 
 def convert_to_object_id(id):

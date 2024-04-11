@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     mongodb_user: str
     mongodb_password: str
     mongodb_port: int = 27017
+    delete_password: str
 
     @computed_field
     def mongodb_uri(self) -> str:

@@ -48,3 +48,14 @@ def update_project(project_id: str, project: ProjectSchemaOptional):
         return {"modified_count": str(result)}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
+@app.delete("/projects/{project_id}")
+def delete_project(project_id: str, password: str):
+    if password != settings.delete_password:
+        raise HTTPException(status_code=400, detail="Invalid password")
+    
+    try:
+        result = db_manager.delete_item({"_id": project_id})
+        return {"deleted_count": str(result)}
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
