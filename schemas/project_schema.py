@@ -7,13 +7,16 @@ class ProjectSchema(BaseModel):
     image_url: str
     project_name: str
     project_description: str
+    project_markdown_page: str
     github_url: str
+
 
 class ProjectSchemaOptional(BaseModel):
     is_active: Optional[bool] = True
     image_url: Optional[str] = None
     project_name: Optional[str] = None
     project_description: Optional[str] = None
+    project_markdown_page: Optional[str] = None
     github_url: Optional[str] = None
 
 
